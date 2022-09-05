@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: bems1
+  name: bems1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bems1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: bems1
+    spec:
+      containers:
+      - image: skpvtregistry.azurecr.io/bemsapp01
+        name: bems1
+        ports:
+        - containerPort: 8080
+        resources: {}
+status: {}
