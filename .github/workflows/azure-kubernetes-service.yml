@@ -7,10 +7,10 @@ name: Build and deploy an app to AKS
 env:
     AZURE_CONTAINER_REGISTRY: skpvtregistry
     CLUSTER_NAME: pvtaks-cluster
-    CONTAINER_NAME: bemsapp01
+    CONTAINER_NAME: bemsapp1
     DEPLOYMENT_MANIFEST_PATH: ./manifests
-    IMAGE_PULL_SECRET_NAME: skpvtregistrysecret
-    RESOURCE_GROUP: pvtaks-rg01
+    IMAGE_PULL_SECRET_NAME: skpvtregistry.azurecr.iosecret
+    RESOURCE_GROUP: pvtaks-rg
 jobs:
     buildImage:
         permissions:
@@ -20,7 +20,7 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - name: Azure login
-              uses: azure/login@v3
+              uses: azure/login@v1.4.3
               with:
                 client-id: ${{ secrets.AZURE_CLIENT_ID }}
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
@@ -35,7 +35,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Azure login
-              uses: azure/login@v3
+              uses: azure/login@v1.4.3
               with:
                 client-id: ${{ secrets.AZURE_CLIENT_ID }}
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
