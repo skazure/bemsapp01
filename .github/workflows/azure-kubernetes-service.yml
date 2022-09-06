@@ -2,8 +2,7 @@ name: Build and deploy an app to AKS
 "on":
     push:
         branches:
-            - main
-    workflow_dispatch: null
+            - main    
 env:
     AZURE_CONTAINER_REGISTRY: skpvtregistry
     CLUSTER_NAME: pvtaks-cluster
@@ -56,13 +55,13 @@ jobs:
                 echo "::add-mask::${ACR_PASSWORD}"
                 echo "::set-output name=password::${ACR_PASSWORD}"
             - name: Create K8s secret for pulling image from ACR
-              uses: Azure/k8s-create-secret@v2
+              uses: azure/k8s-create-secret@v2
               with:
                 namespace: 'default'
-                container-registry-password: ${{ steps.get-acr-creds.outputs.password }}
+                secret-name: ${{ env.IMAGE_PULL_SECRET_NAME }}
                 container-registry-url: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
                 container-registry-username: ${{ steps.get-acr-creds.outputs.username }}
-                secret-name: ${{ env.IMAGE_PULL_SECRET_NAME }}
+                container-registry-password: ${{ steps.get-acr-creds.outputs.password }}
               id: create-secret
     deploy:
         permissions:
