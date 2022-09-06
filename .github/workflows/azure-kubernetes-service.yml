@@ -55,7 +55,7 @@ jobs:
                 echo "::add-mask::${ACR_PASSWORD}"
                 echo "::set-output name=password::${ACR_PASSWORD}"
             - name: Set imagePullSecret
-              uses: azure/k8s-create-secret@v2
+              uses: azure/k8s-create-secret@v1.1
               id: create-secret
               with:                
                 secret-name: ${{ env.IMAGE_PULL_SECRET_NAME }}
