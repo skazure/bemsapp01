@@ -57,7 +57,8 @@ jobs:
             - name: Set imagePullSecret
               uses: azure/k8s-create-secret@v3.0
               id: create-secret
-              with:                
+              with:
+                namespace: "test"
                 secret-name: ${{ env.IMAGE_PULL_SECRET_NAME }}
                 container-registry-url: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
                 container-registry-username: ${{ steps.get-acr-creds.outputs.username }}
