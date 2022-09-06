@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS builder
 WORKDIR /app
 
 # caches restore result by copying csproj file separately
-COPY *.csproj .
+COPY BE-Microservice1/*.csproj .
 RUN dotnet restore
 
 COPY . .
