@@ -8,7 +8,7 @@ env:
     CLUSTER_NAME: pvtaks-cluster
     CONTAINER_NAME: bemsapp1
     DEPLOYMENT_MANIFEST_PATH: ./manifests
-    IMAGE_PULL_SECRET_NAME: skpvtregistry.azurecr.iosecret
+    IMAGE_PULL_SECRET_NAME: skpvtregistry
     RESOURCE_GROUP: pvtaks-rg
 jobs:
     buildImage:
@@ -80,7 +80,7 @@ jobs:
                 subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
                 tenant-id: ${{ secrets.AZURE_TENANT_ID }}
             - name: Get K8s context
-              uses: azure/aks-set-context@v2.0
+              uses: azure/aks-set-context@v3.0
               with:
                 cluster-name: ${{ env.CLUSTER_NAME }}
                 resource-group: ${{ env.RESOURCE_GROUP }}
