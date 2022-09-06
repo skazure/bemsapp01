@@ -10,7 +10,7 @@ env:
     CONTAINER_NAME: bemsapp1
     DEPLOYMENT_MANIFEST_PATH: ./manifests
     IMAGE_PULL_SECRET_NAME: skpvtregistry.azurecr.iosecret
-    RESOURCE_GROUP: pvtaks-rg01
+    RESOURCE_GROUP: pvtaks-rg
 jobs:
     buildImage:
         permissions:
