@@ -57,6 +57,7 @@ jobs:
             - name: Set imagePullSecret
               uses: azure/k8s-create-secret@v1.1
               id: create-secret
+              timeout-minutes: 2
               with:                
                 secret-name: ${{ env.IMAGE_PULL_SECRET_NAME }}
                 container-registry-url: ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io
